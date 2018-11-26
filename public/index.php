@@ -1,60 +1,155 @@
-<?php
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-/**
- * Laravel - A PHP Framework For Web Artisans
- *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
- */
+        <title>Sales records App</title>
 
-define('LARAVEL_START', microtime(true));
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
-/*
-|--------------------------------------------------------------------------
-| Register The Auto Loader
-|--------------------------------------------------------------------------
-|
-| Composer provides a convenient, automatically generated class loader for
-| our application. We just need to utilize it! We'll simply require it
-| into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels great to relax.
-|
-*/
+        <!-- boostrap -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/libs/css/style.css">
+        <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="assets/vendor/vector-map/jqvmap.css">
+        <link href="assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/vendor/charts/chartist-bundle/chartist.css">
+        <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css">
+        <link rel="stylesheet" href="assets/vendor/charts/morris-bundle/morris.css">
+        <link rel="stylesheet" type="text/css" href="assets/vendor/daterangepicker/daterangepicker.css" />
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
 
-require __DIR__.'/../vendor/autoload.php';
+            .full-height {
+                height: 100vh;
+            }
 
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
-|--------------------------------------------------------------------------
-|
-| We need to illuminate PHP development, so let us turn on the lights.
-| This bootstraps the framework and gets it ready for use, then it
-| will load up this application so that we can run it and send
-| the responses back to the browser and delight our users.
-|
-*/
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+            .position-ref {
+                position: relative;
+            }
 
-/*
-|--------------------------------------------------------------------------
-| Run The Application
-|--------------------------------------------------------------------------
-|
-| Once we have the application, we can handle the incoming request
-| through the kernel, and send the associated response back to
-| the client's browser allowing them to enjoy the creative
-| and wonderful application we have prepared for them.
-|
-*/
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+            .content {
+                text-align: center;
+            }
 
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
+            .title {
+                font-size: 84px;
+            }
 
-$response->send();
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
 
-$kernel->terminate($request, $response);
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div class="container">
+        <!--nav bar -->
+                <div class="" id="nav">
+                <nav class="navbar navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand" style="color:#fff">Navbar</a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </nav>
+</div>
+
+        <div id="registerForm" >
+                            <form action="store" class="text-center border border-light p-5" method="post">
+                                    <p class="h4 mb-4">New User</p>
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control mt-2 name" id="name" name="name" placeholder="Name" required>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control mt-2 surname" id="surname" name="surname" placeholder="Surname" required>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <input type="email" class="form-control mt-2 mail" id="mail" name="mail" placeholder="Email" required>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                    <!-- -->
+                                    <label class="radio-inline">
+                                    <p>Select job title:</p>
+      <input type="radio" name="title" value="Barber" checked>Barber
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="title" value="Hair-dresser" >Hair-dresser
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="title" value="Nail-technician" >Nail-Techinician
+    </label>
+
+                                      </div>
+                                      <div class="col-lg-6">
+                                            <div class="form-group">
+                                              <input type="password" class="form-control mt-2 pass" name="pass" id="pass" placeholder="Password" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                                <div class="form-group">
+                                                  <input type="password" class="form-control mt-2 passConfirm" name="passConfirm" id="passConfirm" placeholder="Confirm Password" required>
+                                                </div>
+                                            </div>
+                                      <div class="col-12">
+                                      <div class="form-group">
+                                        <!--<div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                          <label class="form-check-label" for="invalidCheck2">
+                                            Gender
+                                          </label>
+                                        </div>-->
+                                      </div>
+                                      </div>
+                                      <!--Register button -->
+                                      <button class="btn btn-outline-danger btn-block my-4 sumitBtn" id="sumitBtn" type="submit">Submit</button>
+                                    </div>
+                                  </form>
+                    </div>   
+
+        </div>
+    </body>
+</html>
