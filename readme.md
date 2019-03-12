@@ -1,1 +1,1 @@
-A simple records keeping app for salon.
+A simple records keeping database driven web app for salon.
